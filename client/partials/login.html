@@ -1,0 +1,11 @@
+<div ng-controller="usersController as UC">
+  <form name='loginForm'>
+    <label>Your Name:</label><input type="text" name="name" ng-model="UC.name">
+    <button ng-click="UC.login()">Login</button>
+    <div ng-if="UC.errors.missing">
+      <p>
+        Name is required.
+      </p>
+    </div>
+  </form>
+</div>

@@ -2,7 +2,7 @@ var Appointment = mongoose.model('Appointment')
 module.exports = (function(){
   return {
     index: function(request, response){
-      Appointment.find({"date" : { $gte : new Date() }}).populate('_patient')
+      Appointment.find({"date" : { $gte : new Date().toISOString().substring(0, 10) }}).populate('_patient')
       .exec(function(err,results){
         console.log('index appointments', results);
         response.json(results)
@@ -17,7 +17,7 @@ module.exports = (function(){
       })
     },
     create: function(request, response){
-      console.log('server appointment create', request);
+      console.log('server appointment create', request.body);
       var appointment = new Appointment(request.body)
       appointment.save(function(err,info){
         if(err) response.json(err)

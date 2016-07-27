@@ -10,7 +10,6 @@ myApp.controller('new_appointmentController',function(appointmentFactory,userFac
     })
   }
   index()
-
   var getActiveUser = function(){
     userFactory.getActiveUser(function(data){
       if (!data) {
@@ -21,17 +20,13 @@ myApp.controller('new_appointmentController',function(appointmentFactory,userFac
   };
   getActiveUser()
   self.create = function(info){
-    console.log('info',info.date);
-    if (info.date < self.today) {
+    if (info.date.toISOString().substring(0, 10) < self.today.toISOString().substring(0, 10)) {
       alert('Appointment must be in the future');
     }
-
     else{
       var count = 0
       for (var i = 0; i < self.appointments.length; i++) {
-        console.log(self.appointments[i].date);
-        console.log(info.date.toISOString());
-        if (self.appointments[i].date == info.date.toISOString()) {
+        if (self.appointments[i].date.substring(0, 10) == info.date.toISOString().substring(0, 10)) {
           console.log('matching');
           count ++
         }
@@ -42,15 +37,12 @@ myApp.controller('new_appointmentController',function(appointmentFactory,userFac
       else if (info.complain <11) {
         alert('must be at least 10 characters')
         $location.url('/new_appointment')
-
       }
-
       else{
-        var appointment_info = {_patient: self.activeUser, date:info.date, time:info.time, complain: info.complain}
+        var appointment_info = {_patient: self.activeUser, date:info.date.toISOString().substring(0, 10), time:info.time, complain: info.complain}
         appointmentFactory.create(appointment_info, function(){
           $location.url('/')
         })
-
       }
       console.log('just right');
     }

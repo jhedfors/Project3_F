@@ -17,7 +17,7 @@
     </thead>
     <tbody>
       <tr ng-repeat="appointment in DC.appointments | filter:name_filter | orderBy : ['date', 'time']">
-        <td>{{ appointment.date | date : format : mediumDate}}</td>
+        <td>{{ appointment.date.substring(0, 10) | date : format : mediumDate}}</td>
         <td>{{ appointment.time | date : 'hh:mm a'}}</td>
         <td>{{ appointment._patient.name}}</td>
         <td>

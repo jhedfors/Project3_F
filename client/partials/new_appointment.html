@@ -1,16 +1,23 @@
-<div ng-controller="usersController as UC">
-    <a href ng-click="UC.logout()">Logout</a>
-</div>
-<div ng-controller="new_appointmentController as NAC">
+<nav class="lime darken-4">
+  <div class="nav-wrapper container">
+    <a href="#" class="brand-logo left">Doctor Appointments</a>
+    <ul id="nav-mobile" class="right">
+      <div ng-controller="usersController as UC">
+        <li><a href ng-click="UC.logout()">Logout</a></li>
+      </div>
+    </ul>
+  </div>
+</nav>
+<div class="section container" ng-controller="new_appointmentController as NAC">
   <h4>New Appointment</h4>
   <form name="new_appointment">
     <label>Date:</label>
     <input type="date" name="date" ng-model="NAC.new.date" required>
     <label>Time:</label>
     <input type="time" name="time" ng-model="NAC.new.time" required>
-    <label>Complain:</label>
-    <textarea name="complain" rows="8" cols="40" ng-model="NAC.new.complain" minlength='10'></textarea>
-    <a href="#/"><button>Cancel</button></a>
-    <button ng-click="NAC.create(NAC.new)">Add Appointment</button>
+    <label>Purpose for Visit:</label>
+    <textarea name="complain" rows="8" cols="40" ng-model="NAC.new.complain" minlength='10' required></textarea>
+    <a href="#/"><button class="btn lime darken-2">Cancel</button></a>
+    <button class="btn lime darken-2" ng-click="NAC.create(NAC.new)">Add Appointment</button>
   </form>
 </div>

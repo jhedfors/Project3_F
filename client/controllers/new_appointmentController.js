@@ -20,12 +20,16 @@ myApp.controller('new_appointmentController',function(appointmentFactory,userFac
   };
   getActiveUser()
   self.create = function(info){
+    console.log(info);
     var timeNumber = Number(info.time.toTimeString().substring(0, 2)+info.time.toTimeString().substring(3, 5));
     if (info.date.toISOString().substring(0, 10) < self.today.toISOString().substring(0, 10)) {
       alert('Appointment must be in the future');
     }
     else if (timeNumber < 0800 || timeNumber > 1700){
       alert('Appointment must be between 8:00:00 AM and 5:00:00 PM')
+    }
+    else if (info.complain == null){
+      alert('Purpose for Visit must contain a minimum of 10 characters')
     }
     else{
       var count = 0

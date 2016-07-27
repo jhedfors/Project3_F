@@ -1,11 +1,19 @@
 <div ng-controller="usersController as UC">
-  <form name='loginForm'>
-    <label>Your Name:</label><input type="text" name="name" ng-model="UC.name">
-    <button ng-click="UC.login()">Login</button>
-    <div ng-if="UC.errors.missing">
-      <p>
-        Name is required.
-      </p>
+  <nav class="lime darken-4">
+    <div class="nav-wrapper container">
+      <a href="#" class="brand-logo left">Doctor Appointments</a>
     </div>
-  </form>
+  </nav>
+  <div class="section container">
+    <form name='loginForm'>
+      <label>Your Name:</label><input type="text" name="name" ng-model="UC.name">
+      <button class="btn lime darken-2" ng-click="UC.login()">Login</button>
+      <div ng-if="UC.errors.missing">
+        <p>
+          Name is required.
+        </p>
+      </div>
+    </form>
+
+  </div>
 </div>

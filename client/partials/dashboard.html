@@ -1,35 +1,44 @@
-<div ng-controller="usersController as UC">
-    <a href ng-click="UC.logout()">Logout</a>
-</div>
 <div ng-controller="dashboardController as DC">
-  <h4>Doctor's Appointments</h4>
-  <div class="search">
-    <label>Search</label><input type="text" ng-model="name_filter">
-  </div>
-  <table>
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Time</th>
-        <th>Patient Name</th>
-        <th>Complain</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="appointment in DC.appointments | filter:name_filter | orderBy : ['date', 'time']">
-        <td>{{ appointment.date.substring(0, 10) | date : format : mediumDate}}</td>
-        <td>{{ appointment.time | date : 'hh:mm a'}}</td>
-        <td>{{ appointment._patient.name}}</td>
-        <td>
-          {{ appointment.complain }}
-          <span ng-if="appointment._patient.name == DC.activeUser.name">
-            <button ng-click="DC.destroy(appointment)">Cancel</button>
-          </span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="">
-    <a href="#/new_appointment"><button>Add New Appointment</button></a>
+  <nav class="lime darken-4">
+    <div class="nav-wrapper container">
+      <a href="#/" class="brand-logo left">Doctor Appointments</a>
+      <ul id="nav-mobile" class="right">
+        <div ng-controller="usersController as UC">
+          <li><a href ng-click="UC.logout()">Logout</a></li>
+        </div>
+      </ul>
+    </div>
+  </nav>
+  <div class="content container section">
+    <div class="search">
+      <label>Search</label><input type="text" ng-model="name_filter">
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Patient Name</th>
+          <th>Purpose for Visit / Complaint</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="appointment in DC.appointments | filter:name_filter | orderBy : ['date', 'time']">
+          <td>{{ appointment.date.substring(0, 10) | date : format : mediumDate}}</td>
+          <td>{{ appointment.time | date : 'hh:mm a'}}</td>
+          <td>{{ appointment._patient.name}}</td>
+          <td>
+            {{ appointment.complain }}
+            <span ng-if="appointment._patient.name == DC.activeUser.name">
+              <button class="btn lime darken-2" ng-click="DC.destroy(appointment)">Cancel</button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="">
+      <a href="#/new_appointment"><button class="btn lime darken-2">Add New Appointment</button></a>
+    </div>
+
   </div>
 </div>
